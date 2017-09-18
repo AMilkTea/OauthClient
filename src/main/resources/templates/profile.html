@@ -1,0 +1,22 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>yhOauthTest</title>
+    <link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{bootstrap/css/bootstrap-theme.min.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">实现第三方认证</h3>
+    </div>
+    <div class="panel-body">
+        <h3>AccessToken:</h3>
+        <span th:text="${access_token}">12345</span><br/>
+        <h3>profile:</h3>
+        <span th:text="${profile}">lyp</span>
+    </div>
+</div>
+
+</body>
+</html>
