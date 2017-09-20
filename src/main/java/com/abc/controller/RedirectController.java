@@ -1,6 +1,8 @@
 package com.abc.controller;
 
 import com.abc.utility.HttpUtility;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import java.util.HashMap;
  */
 @Controller
 public class RedirectController {
+    final static Logger LOG = LoggerFactory.getLogger(RedirectController.class);
 
     @Autowired
     private Environment env;
@@ -42,6 +45,7 @@ public class RedirectController {
 
         try {
             String response = HttpUtility.sendPost(url, params);
+            LOG.info("accessToken response:" + response);
             HashMap tokenMap = getTokenMap(response);
             String accessToken = (String) tokenMap.get("access_token");
 
@@ -49,6 +53,7 @@ public class RedirectController {
 
             url = env.getProperty("profile_url") + "?access_token=" + accessToken;
             String profile = HttpUtility.sendGet(url);
+            LOG.info("profile:" + profile);
 
             model.addAttribute("profile", profile);
         } catch (Exception e) {
